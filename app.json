@@ -10,6 +10,7 @@
   },
   "addons": [],
   "buildpacks": [
+    { "url": "https://github.com/casetext/heroku-buildpack-firebase" },
     {
       "url": "heroku/nodejs"
     }
