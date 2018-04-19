@@ -1,6 +1,6 @@
 import * as firebase from 'firebase';
 
-const serviceAccount = require('../../../service-account-key.json');
+const serviceAccount = require('../service-account-key.json');
 
 const config = {
   apiKey: 'AIzaSyDOY55XaKID0G9EuPr2ijexwe0_scPX1Hk',
