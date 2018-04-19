@@ -7,10 +7,12 @@
   },
   "scripts": {
     "start": "node server",
-    "heroku-postbuild":
-      "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
-  "cacheDirectories": ["node_modules", "react-ui/node_modules"],
+  "cacheDirectories": [
+    "node_modules",
+    "react-ui/node_modules"
+  ],
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.0.0",
@@ -18,6 +20,7 @@
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "firebase": "^4.12.1",
+    "firebase-admin": "^5.12.0",
     "font-awesome": "^4.7.0",
     "prop-types": "^15.6.1",
     "react": "^16.3.0",
@@ -32,7 +35,12 @@
     "type": "git",
     "url": "https://github.com/KingAtoki/heroku-cra-node"
   },
-  "keywords": ["node", "heroku", "create-react-app", "react"],
+  "keywords": [
+    "node",
+    "heroku",
+    "create-react-app",
+    "react"
+  ],
   "license": "MIT",
   "devDependencies": {}
 }

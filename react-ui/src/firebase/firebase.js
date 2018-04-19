@@ -1,5 +1,7 @@
 import * as firebase from 'firebase';
 
+const admin = require('firebase-admin');
+
 const config = {
   apiKey: 'AIzaSyDOY55XaKID0G9EuPr2ijexwe0_scPX1Hk',
   authDomain: 'trains-635b2.firebaseapp.com',
