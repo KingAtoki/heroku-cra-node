@@ -37,7 +37,7 @@ export default class SettingsPage extends React.Component {
   };
   render() {
     return (
-      <div class="page">
+      <div className="page">
         <div>
           <LeftNavigation />
         </div>
