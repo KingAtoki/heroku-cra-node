@@ -1,8 +1,8 @@
 import * as firebase from 'firebase';
 
-const admin = require('firebase-admin');
+import { credential as _credential } from 'firebase-admin';
 
-const serviceAccount = require('../service-account-key.json');
+import serviceAccount from '../service-account-key.json';
 
 const config = {
   apiKey: 'AIzaSyDOY55XaKID0G9EuPr2ijexwe0_scPX1Hk',
@@ -11,7 +11,7 @@ const config = {
   projectId: 'trains-635b2',
   storageBucket: 'trains-635b2.appspot.com',
   messagingSenderId: '756876626177',
-  credential: admin.credential.cert(serviceAccount)
+  credential: _credential.cert(serviceAccount)
 };
 firebase.initializeApp(config);
 
