@@ -7,9 +7,9 @@ const cluster = require('cluster');
 const numCPUs = require('os').cpus().length;
 
 const PORT = process.env.PORT || 5000;
-const accountSid = process.env.TWILIO_TEST_ACCOUNT_SID;
-const authToken = process.env.TWILIO_TEST_AUTHTOKEN;
-const client = new twilio(accountSid, authToken);
+// const accountSid = process.env.TWILIO_TEST_ACCOUNT_SID;
+// const authToken = process.env.TWILIO_TEST_AUTHTOKEN;
+// const client = new twilio(accountSid, authToken);
 
 const baseURL = 'https://howd-it-go.firebaseio.com';
 const axios = require('axios');
@@ -69,17 +69,17 @@ if (cluster.isMaster) {
     );
   });
 
-  app.post('/message-user', (req, res) => {
-    const message = req.body;
-    client.messages
-      .create({
-        body: message.text,
-        to: '+18569744731', // Text this number
-        from: '+15612796790' // From a valid Twilio number
-      })
-      .then(response => res.json(response))
-      .catch(err => res.json(err));
-  });
+  // app.post('/message-user', (req, res) => {
+  //   const message = req.body;
+  //   client.messages
+  //     .create({
+  //       body: message.text,
+  //       to: '+18569744731', // Text this number
+  //       from: '+15612796790' // From a valid Twilio number
+  //     })
+  //     .then(response => res.json(response))
+  //     .catch(err => res.json(err));
+  // });
 
   app.post(`${baseURL}/users.json`, (req, res) => {
     axios.get;
