@@ -26,7 +26,7 @@ const INITIAL_STATE = {
   error: null
 };
 
-class SignInForm extends Component {
+export class SignInForm extends Component {
   constructor(props) {
     super(props);
 
@@ -104,4 +104,4 @@ class SignInForm extends Component {
 
 export default withRouter(SignInPage);
 
-export { SignInForm };
+//export { SignInForm };

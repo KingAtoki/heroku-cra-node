@@ -38,4 +38,4 @@ const App = () => (
     </div>
   </Router>
 );
-export default withAuthentication(App);
+export default App;
