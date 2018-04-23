@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { auth, db } from '../firebase';
 import './SignUp.css';
 import { SignInForm } from './SignIn';
 import axios from 'axios';
