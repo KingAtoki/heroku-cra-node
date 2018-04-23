@@ -42,5 +42,6 @@
     "react"
   ],
   "license": "MIT",
-  "devDependencies": {}
+  "devDependencies": {},
+  "homepage": "https://howd-it-go.herokuapp.com/"
 }

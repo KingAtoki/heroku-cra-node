@@ -5,7 +5,6 @@ import LandingPage from './Landing';
 import SignUpPage from './SignUp';
 import SignInPage from './SignIn';
 import PasswordForgetPage from './PasswordForget';
-//import HomePage from './Home';
 import AccountPage from './Account';
 import PasswordPage from './Password';
 import InvitePage from './invite';
@@ -13,8 +12,6 @@ import SettingsPage from './Settings';
 import StatsPage from './Stat';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as routes from '../constants/routes';
-
-import withAuthentication from './withAuthentication';
 
 const App = () => (
   <Router>
