@@ -9,8 +9,14 @@ const numCPUs = require('os').cpus().length;
 const PORT = process.env.PORT || 5000;
 const accountSid = process.env.TWILIO_TEST_ACCOUNT_SID;
 const authToken = process.env.TWILIO_TEST_AUTHTOKEN;
-
 const client = new twilio(accountSid, authToken);
+
+const baseURL = 'https://howd-it-go.firebaseio.com';
+const axios = require('axios');
+const firebase = require('firebase');
+const admin = require('firebase-admin');
+
+const serviceAccount = require('./service-account-key.json');
 
 // Multi-process to utilize all CPU cores.
 if (cluster.isMaster) {
@@ -29,6 +35,12 @@ if (cluster.isMaster) {
     );
   });
 } else {
+  admin.initializeApp({
+    databaseURL: 'https://howd-it-go.firebaseio.com',
+    credential: admin.credential.cert(serviceAccount)
+  });
+  const db = admin.database();
+  const ref = db.ref(`/`);
   const app = express();
   app.use(cors());
   app.use(express.json());
@@ -36,23 +48,28 @@ if (cluster.isMaster) {
   app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
   // Answer API requests.
-  app.get('/api', function(req, res) {
-    res.set('Content-Type', 'application/json');
+  app.get('/api', (req, res) => {
     res.send({ message: 'Hello from the custom server!' });
   });
 
-  // All remaining requests return the React app, so it can handle routing.
-  app.get('*', function(request, response) {
-    response.sendFile(
-      path.resolve(__dirname, '../react-ui/build', 'index.html')
+  app.patch('/users/:username', (req, res) => {
+    const { username } = req.params;
+    const { email, password } = req.body;
+    const usersRef = ref.child('users');
+    usersRef.child(`${username}`).set(
+      {
+        details: {
+          email: email,
+          password: password
+        }
+      },
+      err => {
+        if (!err) res.send({ success: 'true' });
+      }
     );
   });
 
-  // app.get('/', (req, res) => {
-  //   res.json({ success: 'this is working' });
-  // });
-
-  app.post('/', (req, res) => {
+  app.post('/message-user', (req, res) => {
     const message = req.body;
     client.messages
       .create({
@@ -62,6 +79,35 @@ if (cluster.isMaster) {
       })
       .then(response => res.json(response))
       .catch(err => res.json(err));
+  });
+
+  app.post(`${baseURL}/users.json`, (req, res) => {
+    axios.get;
+    const email = req.body.email;
+    const password = req.body.passwordOne;
+    firebase
+      .auth()
+      .createUserWithEmailAndPassword(email, password)
+      .catch(err => console.log(err.code, err.message));
+  });
+
+  app.post(`${baseURL}/users.json`);
+  // app.post('/users/:dbname/name.json', (req, res) => {
+  //   const username = req.body;
+  //   firebase.
+  // })
+  // app.post('/signin', (req, res) => {
+  //   const { email, password } = req.body;
+  //   firebase
+  //     .auth()
+  //     .signInWithEmailAndPassword(email, password)
+  //     .catch(err => console.log(err.code, err.message));
+  // });
+  // All remaining requests return the React app, so it can handle routing.
+  app.get('*', function(request, response) {
+    response.sendFile(
+      path.resolve(__dirname, '../react-ui/build', 'index.html')
+    );
   });
 
   app.listen(PORT, function() {
