@@ -16,7 +16,7 @@ const axios = require('axios');
 const firebase = require('firebase');
 const admin = require('firebase-admin');
 
-const serviceAccount = require('./service-account-key.json');
+//const serviceAccount = require('./service-account-key.json');
 // Multi-process to utilize all CPU cores.
 if (cluster.isMaster) {
   console.error(`Node cluster master ${process.pid} is running`);
